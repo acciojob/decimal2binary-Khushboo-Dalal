@@ -1,38 +1,20 @@
-function threeSum(arr, target) {
-// write your code here
-	 arr.sort((a, b) => a - b); // sort the array in ascending order
-  let closestSum = Infinity;
-  
-  for (let i = 0; i < arr.length - 2; i++) {
-    let left = i + 1;
-    let right = arr.length - 1;
-    
-    while (left < right) {
-      let sum = arr[i] + arr[left] + arr[right];
-      let diff = Math.abs(target - sum);
-      
-      if (diff === 0) {
-        // we found a sum that is equal to the target, so we can return it
-        return sum;
-      }
-      
-      if (diff < Math.abs(target - closestSum)) {
-        // update the closestSum if the current sum is closer to the target
-        closestSum = sum;
-      }
-      
-      if (sum < target) {
-        // if the sum is less than target, we need to increase the sum
-        left++;
-      } else {
-        // if the sum is greater than target, we need to decrease the sum
-        right--;
-      }
-    }
+function decimalToBinary(decimal) {
+  let binary = '';
+
+  // Edge case: if the input is 0, return '0' directly
+  if (decimal === 0) {
+    return '0';
   }
-  
-  return closestSum;
-  
+
+  while (decimal > 0) {
+    // Append the least significant bit to the binary string
+    binary = (decimal % 2) + binary;
+
+    // Update the decimal by dividing it by 2 (integer division)
+    decimal = Math.floor(decimal / 2);
+  }
+
+  return binary;
 }
 
-module.exports = threeSum;
+console.log(decimalToBinary(decimal));
